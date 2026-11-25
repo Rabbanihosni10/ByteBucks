@@ -113,3 +113,71 @@ Parents and educators get a separate view to monitor student progress, identify 
 │  │  Service │  │   (DB)   │  │Policies  │              │
 │  └──────────┘  └──────────┘  └──────────┘              │
 └─────────────────────────────────────────────────────────┘
+
+---
+
+## 🚀 Key Features
+
+### For Students
+- **Interactive Quiz Engine**: Answer real-world financial scenarios with immediate feedback
+- **Gamified Wallet**: Earn virtual coins for correct answers, trackable on dashboard
+- **Progressive Unlocking**: Master basic concepts before advancing to complex topics
+- **Personalized Recommendations**: System suggests remedial content based on performance
+
+### For Parents/Educators
+- **Analytics Dashboard**: View student's total coins, quiz completion rate, and average scores
+- **Progress Tracking**: Identify which financial concepts need more practice
+- **Multi-student Support**: Monitor multiple children/students from a single account
+
+### Advanced Technical Features
+- **Automated Multi-Step Workflow (A07)**: Post-quiz pipeline that saves attempt, awards coins, checks badges, and triggers notifications—with failure recovery
+- **Intelligent Decision Engine (A02)**: Rule-based system that analyzes quiz performance and recommends personalized learning paths
+
+---
+
+## 📊 Competition Details
+
+- **Competition**: Hack the Vibe 2026 (Code-ArenaX Solo Vibe Coding Championship)
+- **Track**: Educational Problem Solver
+- **Advanced Challenges Implemented**:
+  - **A07**: Automated Multi-Step Workflow (Event-driven automation with recovery logic)
+  - **A02**: Intelligent Decisions & Optimization (Rule-based recommendations)
+
+---
+
+## 🔐 Security & Best Practices
+
+- **Row Level Security (RLS)**: Supabase RLS policies ensure students can only access their own data
+- **Environment Variables**: All secrets (API keys, database URLs) stored in `.env` files, never committed to Git
+- **Input Validation**: Zod schemas validate all user inputs before database operations
+- **Duplicate Prevention**: Server-side checks prevent duplicate quiz submissions
+- **Audit Logging**: Failed operations are logged for debugging and recovery
+
+---
+
+## 📖 Learning Outcomes
+
+Building ByteBucks demonstrated my ability to:
+- Design and implement complex business logic (rule-based progression, adaptive recommendations)
+- Build production-ready full-stack applications with modern tools (Next.js, TypeScript, Supabase)
+- Handle edge cases and failure scenarios gracefully (transaction rollback, error logging)
+- Create accessible, responsive UIs following WCAG guidelines
+- Deploy and document applications for production use
+
+This project serves as a portfolio piece demonstrating my readiness for full-stack development roles and my passion for educational technology.
+
+---
+
+## 🤝 Contributing
+
+This project was built for the Hack the Vibe 2026 competition. While it's not open for contributions, feel free to explore the code, learn from the implementation, or reach out with questions!
+
+---
+
+## 📄 License
+
+This project was created for educational purposes as part of the Hack the Vibe 2026 competition.
+
+---
+
+**Built with ❤️ by Hosni Rabbani**

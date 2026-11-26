@@ -39,7 +39,7 @@ Unlike static educational apps, ByteBucks uses:
 
 ## 🎯 What Problem Does It Solve?
 
-**Problem Statement:**  
+**Problem Statement:**
 Children aged 10-16 lack access to engaging, practical financial education tools that teach foundational concepts through real-world application.
 
 **Target Users:**
@@ -47,7 +47,7 @@ Children aged 10-16 lack access to engaging, practical financial education tools
 2. **Parents**: Monitor their child's progress and identify areas needing improvement
 3. **Educators**: Use the platform as a supplementary teaching tool in classrooms
 
-**Solution:**  
+**Solution:**
 ByteBucks provides a gamified learning platform where students:
 - Complete interactive financial case studies (saving, borrowing, investing, digital security)
 - Earn virtual coins for correct answers and speed
@@ -113,6 +113,7 @@ Parents and educators get a separate view to monitor student progress, identify 
 │  │  Service │  │   (DB)   │  │Policies  │              │
 │  └──────────┘  └──────────┘  └──────────┘              │
 └─────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -132,6 +133,61 @@ Parents and educators get a separate view to monitor student progress, identify 
 ### Advanced Technical Features
 - **Automated Multi-Step Workflow (A07)**: Post-quiz pipeline that saves attempt, awards coins, checks badges, and triggers notifications—with failure recovery
 - **Intelligent Decision Engine (A02)**: Rule-based system that analyzes quiz performance and recommends personalized learning paths
+
+---
+
+## ⚙️ Getting Started
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+### 1. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+### 2. Configure environment variables
+
+Create a `.env.local` file in the project root with your Supabase credentials (never commit this file):
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+### 3. Run the development server
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a font family from Vercel.
+
+### Deploying
+
+The easiest way to deploy is the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme), from the creators of Next.js. See the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Learn More
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js GitHub repository](https://github.com/vercel/next.js) - feedback and contributions are welcome!
 
 ---
 

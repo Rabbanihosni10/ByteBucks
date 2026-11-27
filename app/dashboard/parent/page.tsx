@@ -2,16 +2,20 @@ import { createClient } from '@/lib/supabase/server';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { redirect } from 'next/navigation';
 
 export const instant = false;
 
 export default async function ParentDashboard() {
   const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect('/login');
   
   // Fetch all attempts to simulate a "Class Overview"
   const { data: attempts } = await supabase
     .from('attempts')
     .select('score, coins_earned, completed_at, quizzes(title, category)')
+    .eq('user_id', user.id)
     .order('completed_at', { ascending: false })
     .limit(10);
 
@@ -24,9 +28,9 @@ export default async function ParentDashboard() {
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="mx-auto max-w-4xl">
         <div className="mb-8 flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-gray-900">Parent Analytics Portal</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Progress Overview</h1>
           <Link href="/dashboard">
-            <Button variant="outline">Back to Student View</Button>
+            <Button variant="outline">Back to Dashboard</Button>
           </Link>
         </div>
 
@@ -47,7 +51,7 @@ export default async function ParentDashboard() {
         </div>
 
         <Card>
-          <CardHeader><CardTitle>Recent Activity Log</CardTitle></CardHeader>
+          <CardHeader><CardTitle>Your Recent Activity</CardTitle></CardHeader>
           <CardContent>
             {attempts && attempts.length > 0 ? (
               <ul className="space-y-4">

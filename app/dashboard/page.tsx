@@ -3,6 +3,7 @@ import { logout } from '../(auth)/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export const instant = false;
 
@@ -13,11 +14,19 @@ interface QuizSummary {
   category: string;
 }
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ completed?: string }>;
+}) {
   const supabase = await createClient();
+  const query = await searchParams;
   const { data: { user } } = await supabase.auth.getUser();
-  const { data: profile } = await supabase.from('profiles').select('*').eq('id', user?.id).single();
-  const { data: quizzes } = await supabase.from('quizzes').select('*');
+  if (!user) redirect('/login');
+  const [{ data: profile }, { data: quizzes }] = await Promise.all([
+    supabase.from('profiles').select('*').eq('id', user.id).single(),
+    supabase.from('quizzes').select('id, title, description, category').order('created_at'),
+  ]);
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
@@ -33,6 +42,10 @@ export default async function DashboardPage() {
             </form>
           </div>
         </div>
+
+        {query.completed && /^\d{1,3}$/.test(query.completed) && (
+          <p role="status" className="mb-6 rounded bg-green-100 p-3 text-sm text-green-800">Quiz saved! Your score was {query.completed}%.</p>
+        )}
 
         {/* A02: Intelligent Recommendation Banner */}
         {profile?.recommended_quiz_id && (
@@ -58,6 +71,9 @@ export default async function DashboardPage() {
             <p className="text-xl mt-2">Coins: <span className="font-bold text-green-600">{profile?.coins} 🪙</span></p>
           </CardContent>
         </Card>
+
+        {profile?.coins === undefined && <p role="alert" className="mb-6 rounded bg-yellow-100 p-3 text-sm text-yellow-900">Your profile is still being prepared. Refresh this page in a moment.</p>}
+        {quizzes === null && <p role="alert" className="mb-6 rounded bg-red-100 p-3 text-sm text-red-700">Quizzes could not be loaded. Check that the Supabase database migration has been applied.</p>}
 
         <h2 className="text-2xl font-bold mb-4">Available Quizzes</h2>
         <div className="grid gap-4 md:grid-cols-2">

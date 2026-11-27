@@ -9,7 +9,7 @@ import Link from 'next/link';
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ error?: string; message?: string }>;
 }) {
   const params = await searchParams;
   return (
@@ -24,6 +24,9 @@ export default async function LoginPage({
             <div className="mb-4 rounded bg-red-100 p-3 text-sm text-red-700">
               {params.error}
             </div>
+          )}
+          {params.message && (
+            <div className="mb-4 rounded bg-green-100 p-3 text-sm text-green-800">{params.message}</div>
           )}
           <form action={login} className="space-y-4">
             <div className="space-y-2">
